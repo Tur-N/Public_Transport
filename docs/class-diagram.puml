@@ -1,0 +1,74 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface "Subject<E>" as Subject {
+  +subscribe(type, eventClass, observer)
+  +unsubscribe(type, eventClass, observer)
+  +publish(event)
+}
+interface "Observer<E>" as Observer {
+  +onEvent(event)
+}
+class EventSubject<E> {
+  -registry: ConcurrentHashMap
+}
+Subject <|.. EventSubject
+
+class VehicleArrivalSource
+class TicketSaleSource
+Subject <|.. VehicleArrivalSource
+Subject <|.. TicketSaleSource
+VehicleArrivalSource --> Observer : arrival events
+TicketSaleSource --> Observer : ticket events
+
+class RidershipAggregator
+class DelayInspectionService
+Observer <|.. RidershipAggregator
+Observer <|.. DelayInspectionService
+Subject <|.. RidershipAggregator
+Subject <|.. DelayInspectionService
+
+interface TransitNode {
+  +id()
+  +accept(Visitor<R>)
+}
+interface TransitContainer {
+  +children()
+}
+TransitNode <|-- TransitContainer
+class TransitNetwork
+class Route
+class Stop
+TransitContainer <|.. TransitNetwork
+TransitContainer <|.. Route
+TransitContainer <|.. Stop
+TransitNetwork o-- Route
+Route o-- Stop
+Stop o-- Bus
+Stop o-- Tram
+Stop o-- StationFacility
+Stop o-- TicketMachine
+
+class Bus
+class Tram
+class StationFacility
+class TicketMachine
+TransitNode <|.. Bus
+TransitNode <|.. Tram
+TransitNode <|.. StationFacility
+TransitNode <|.. TicketMachine
+
+interface "Visitor<R>" as Visitor
+class OperatingCostVisitor
+class RidershipVisitor
+class AccessibilityFilterVisitor
+class JsonExportVisitor
+Visitor <|.. OperatingCostVisitor
+Visitor <|.. RidershipVisitor
+Visitor <|.. AccessibilityFilterVisitor
+Visitor <|.. JsonExportVisitor
+TransitNode ..> Visitor : double dispatch
+DelayInspectionService --> AccessibilityFilterVisitor : inspect Stop subtree
+DelayInspectionService --> InspectionCompletedEvent : republishes
+RidershipAggregator --> RidershipSummaryEvent : aggregates
+@enduml
