@@ -38,6 +38,7 @@ Visitors:
 2. `RidershipVisitor` — accumulates passenger, vehicle and facility totals across a subtree.
 3. `AccessibilityFilterVisitor` — returns inaccessible elements.
 4. `JsonExportVisitor` — exports the tree with nested arrays and escaped strings.
+5. `NodeCountVisitor` — counts nodes without changing any element class (trade-off commit).
 
 **Traversal choice:** visitors traverse children. This keeps element classes data-focused and lets each operation decide how to walk the tree. It also makes a visitor usable on one `Stop` subtree.
 
@@ -55,7 +56,7 @@ The JUnit 5 test suite covers event-type routing, runtime subscribe/unsubscribe,
 
 ## Trade-off proof commits
 
-- **New visitor commit:** `Add NodeCountVisitor without changing elements`. Only `NodeCountVisitor.java`, its visitor test and this README are added/changed. Existing element classes and the `Visitor` interface do not change. This demonstrates the low cost of adding a new operation.
+- **New visitor commit:** `Add NodeCountVisitor without changing elements`. This commit changes only `NodeCountVisitor.java`, `NodeCountVisitorTest.java` and this README. Existing element classes and the `Visitor` interface do not change. This demonstrates the low cost of adding a new operation.
 - **New element commit:** `Add BicycleDock transit element`. This adds `BicycleDock.java` and updates `Visitor.java`, existing visitor implementations and tests. Every visitor must now define how the new element is handled. This demonstrates the cost of adding a new element to a Visitor-based design.
 
 ## UML
