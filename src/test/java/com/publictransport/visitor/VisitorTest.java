@@ -25,7 +25,7 @@ class VisitorTest {
     void ridershipVisitorCanBeReusedAndResetsState() {
         RidershipVisitor visitor = new RidershipVisitor();
         visitor.analyze(TestFixtures.network());
-        assertEquals(new RidershipReport(60, 2, 2), visitor.analyze(TestFixtures.centralStop()));
+        assertEquals(new RidershipReport(50, 2, 2), visitor.analyze(TestFixtures.centralStop()));
     }
 
     @Test

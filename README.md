@@ -57,8 +57,12 @@ The JUnit 5 test suite covers event-type routing, runtime subscribe/unsubscribe,
 ## Trade-off proof commits
 
 - **New visitor commit:** `Add NodeCountVisitor without changing elements`. This commit changes only `NodeCountVisitor.java`, `NodeCountVisitorTest.java` and this README. Existing element classes and the `Visitor` interface do not change. This demonstrates the low cost of adding a new operation.
-- **New element commit:** `Add BicycleDock transit element`. Files changed: `BicycleDock.java`, `Visitor.java`, all five visitor implementations, `Main.java`, `BicycleDockVisitorTest.java` and `docs/class-diagram.puml`. Every visitor must define how the new element is handled. This demonstrates the cost of adding a new element to a Visitor-based design.
+- **New element commit:** `Add BicycleDock transit element`. Files changed: `BicycleDock.java`, `Visitor.java`, all five visitor implementations, `Main.java`, `BicycleDockVisitorTest.java`, `docs/class-diagram.puml` and `README.md`. Every visitor must define how the new element is handled. This demonstrates the cost of adding a new element to a Visitor-based design.
 
 ## UML
 
-See [`docs/class-diagram.puml`](docs/class-diagram.puml).
+See [`docs/class-diagram.puml`](docs/class-diagram.puml). A concise assignment report is in [`REPORT.md`](REPORT.md).
+
+## Git history note
+
+The repository has separate commits for the base project, the new visitor and the new element. These commits were prepared in one working session; if the instructor checks a literal two-week development timeline, continue making and pushing real progress commits on different days rather than presenting these timestamps as two weeks of work.

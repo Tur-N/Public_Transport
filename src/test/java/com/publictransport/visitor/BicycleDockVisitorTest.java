@@ -12,7 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class BicycleDockVisitorTest {
     @Test
     void operatingCostVisitorHandlesNewElement() {
-        assertEquals(250.0, new BicycleDock("D1", 10, 250.0, true).accept(new OperatingCostVisitor()));
+        double cost = new BicycleDock("D1", 10, 250.0, true).accept(new OperatingCostVisitor());
+        assertEquals(250.0, cost, 0.0001);
     }
 
     @Test
@@ -38,6 +39,7 @@ class BicycleDockVisitorTest {
 
     @Test
     void nodeCountVisitorHandlesNewElement() {
-        assertEquals(1, new BicycleDock("D1", 10, 250.0, true).accept(new NodeCountVisitor()));
+        int count = new BicycleDock("D1", 10, 250.0, true).accept(new NodeCountVisitor());
+        assertEquals(1, count);
     }
 }
