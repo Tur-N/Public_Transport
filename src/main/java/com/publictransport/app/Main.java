@@ -24,7 +24,8 @@ public final class Main {
                 new TicketMachine("TM-2", 120, 800.0, true)));
         Stop riverStop = new Stop("STOP-RIVER", List.of(
                 new Bus("BUS-11", 20, 12.0, false),
-                new StationFacility("RAMP-2", 600.0, true)));
+                new StationFacility("RAMP-2", 600.0, true),
+                new BicycleDock("BIKE-DOCK-1", 12, 250.0, false)));
         Route route = new Route("R1", List.of(centralStop, riverStop));
         TransitNetwork network = new TransitNetwork("ASTANA-NETWORK", List.of(route));
 

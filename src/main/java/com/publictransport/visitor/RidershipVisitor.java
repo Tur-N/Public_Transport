@@ -22,6 +22,7 @@ public final class RidershipVisitor implements Visitor<RidershipReport> {
     @Override public RidershipReport visit(Tram tram) { passengers += tram.passengers(); vehicles++; return snapshot(); }
     @Override public RidershipReport visit(StationFacility station) { facilities++; return snapshot(); }
     @Override public RidershipReport visit(TicketMachine machine) { facilities++; return snapshot(); }
+    @Override public RidershipReport visit(BicycleDock dock) { facilities++; return snapshot(); }
 
     private RidershipReport traverse(TransitContainer container) {
         container.children().forEach(child -> child.accept(this));

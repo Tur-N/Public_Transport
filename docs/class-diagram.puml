@@ -48,25 +48,30 @@ Stop o-- Bus
 Stop o-- Tram
 Stop o-- StationFacility
 Stop o-- TicketMachine
+Stop o-- BicycleDock
 
 class Bus
 class Tram
 class StationFacility
 class TicketMachine
+class BicycleDock
 TransitNode <|.. Bus
 TransitNode <|.. Tram
 TransitNode <|.. StationFacility
 TransitNode <|.. TicketMachine
+TransitNode <|.. BicycleDock
 
 interface "Visitor<R>" as Visitor
 class OperatingCostVisitor
 class RidershipVisitor
 class AccessibilityFilterVisitor
 class JsonExportVisitor
+class NodeCountVisitor
 Visitor <|.. OperatingCostVisitor
 Visitor <|.. RidershipVisitor
 Visitor <|.. AccessibilityFilterVisitor
 Visitor <|.. JsonExportVisitor
+Visitor <|.. NodeCountVisitor
 TransitNode ..> Visitor : double dispatch
 DelayInspectionService --> AccessibilityFilterVisitor : inspect Stop subtree
 DelayInspectionService --> InspectionCompletedEvent : republishes

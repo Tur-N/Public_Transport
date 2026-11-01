@@ -13,6 +13,7 @@ public final class AccessibilityFilterVisitor implements Visitor<List<TransitNod
     @Override public List<TransitNode> visit(Tram tram) { return tram.accessible() ? List.of() : List.of(tram); }
     @Override public List<TransitNode> visit(StationFacility station) { return station.accessible() ? List.of() : List.of(station); }
     @Override public List<TransitNode> visit(TicketMachine machine) { return machine.accessible() ? List.of() : List.of(machine); }
+    @Override public List<TransitNode> visit(BicycleDock dock) { return dock.accessible() ? List.of() : List.of(dock); }
 
     private List<TransitNode> collect(TransitContainer container) {
         List<TransitNode> result = new ArrayList<>();

@@ -31,6 +31,11 @@ public final class JsonExportVisitor implements Visitor<String> {
                 + machine.ticketsSold() + ",\"maintenanceCost\":" + machine.maintenanceCost()
                 + ",\"accessible\":" + machine.accessible() + "}";
     }
+    @Override public String visit(BicycleDock dock) {
+        return "{\"type\":\"bicycleDock\",\"id\":" + quote(dock.id()) + ",\"availableBikes\":"
+                + dock.availableBikes() + ",\"maintenanceCost\":" + dock.maintenanceCost()
+                + ",\"accessible\":" + dock.accessible() + "}";
+    }
 
     private String children(TransitContainer container) {
         return container.children().stream().map(child -> child.accept(this)).collect(Collectors.joining(",", "[", "]"));

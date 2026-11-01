@@ -10,4 +10,5 @@ public interface Visitor<R> {
     R visit(Tram tram);
     R visit(StationFacility station);
     R visit(TicketMachine machine);
+    R visit(BicycleDock dock);
 }

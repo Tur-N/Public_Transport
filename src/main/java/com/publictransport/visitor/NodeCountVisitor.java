@@ -10,6 +10,7 @@ public final class NodeCountVisitor implements Visitor<Integer> {
     @Override public Integer visit(Tram node) { return 1; }
     @Override public Integer visit(StationFacility node) { return 1; }
     @Override public Integer visit(TicketMachine node) { return 1; }
+    @Override public Integer visit(BicycleDock node) { return 1; }
 
     private int countChildren(TransitContainer container) {
         return 1 + container.children().stream().mapToInt(child -> child.accept(this)).sum();

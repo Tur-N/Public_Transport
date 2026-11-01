@@ -13,6 +13,7 @@ public final class OperatingCostVisitor implements Visitor<Double> {
     @Override public Double visit(Tram tram) { return tram.energyKwh() * ELECTRICITY_PRICE; }
     @Override public Double visit(StationFacility station) { return station.maintenanceCost(); }
     @Override public Double visit(TicketMachine machine) { return machine.maintenanceCost(); }
+    @Override public Double visit(BicycleDock dock) { return dock.maintenanceCost(); }
 
     private double sum(TransitContainer container) {
         return container.children().stream().mapToDouble(child -> child.accept(this)).sum();

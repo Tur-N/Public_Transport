@@ -29,9 +29,9 @@ The argument (`4`) configures the producer thread count. At least three threads 
 
 ### Visitor and Composite
 
-Tree: `TransitNetwork → Route → Stop → Bus / Tram / StationFacility / TicketMachine`.
+Tree: `TransitNetwork → Route → Stop → Bus / Tram / StationFacility / TicketMachine / BicycleDock`.
 
-There are three container levels and four leaf types. `TransitNode.accept(visitor)` calls the overload for its concrete type (double dispatch). Visitors perform traversal, not the element classes.
+There are three container levels and five leaf types. `TransitNode.accept(visitor)` calls the overload for its concrete type (double dispatch). Visitors perform traversal, not the element classes.
 
 Visitors:
 1. `OperatingCostVisitor` — calculates total daily operating cost.
@@ -57,7 +57,7 @@ The JUnit 5 test suite covers event-type routing, runtime subscribe/unsubscribe,
 ## Trade-off proof commits
 
 - **New visitor commit:** `Add NodeCountVisitor without changing elements`. This commit changes only `NodeCountVisitor.java`, `NodeCountVisitorTest.java` and this README. Existing element classes and the `Visitor` interface do not change. This demonstrates the low cost of adding a new operation.
-- **New element commit:** `Add BicycleDock transit element`. This adds `BicycleDock.java` and updates `Visitor.java`, existing visitor implementations and tests. Every visitor must now define how the new element is handled. This demonstrates the cost of adding a new element to a Visitor-based design.
+- **New element commit:** `Add BicycleDock transit element`. Files changed: `BicycleDock.java`, `Visitor.java`, all five visitor implementations, `Main.java`, `BicycleDockVisitorTest.java` and `docs/class-diagram.puml`. Every visitor must define how the new element is handled. This demonstrates the cost of adding a new element to a Visitor-based design.
 
 ## UML
 
